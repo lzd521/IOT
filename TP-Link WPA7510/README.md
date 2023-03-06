@@ -13,5 +13,5 @@ The stack overflow is also caused at excFormatCmd
 utils_exec_cmd will execute any command
 
 poc:
-![](@Clipboard_2023-03-06-12-34-08.png)
-![](@Clipboard_2023-03-06-12-34-47.png)
+![](Clipboard_2023-03-06-12-34-08.png)
+![](Clipboard_2023-03-06-12-34-47.png)
