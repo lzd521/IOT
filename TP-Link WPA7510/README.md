@@ -1,16 +1,16 @@
 # Vul3 TP-Link WPA7510
-漏洞描述：httpd处理来自/admin/locale的sub_41E970函数时对operation字段未检验传入PRINTF_ECHO函数和excFormatCmd函数造成栈溢出和任意命令执行
+Vulnerability description: httpd handles the sub_41E970 function from /admin/locale without checking the operation field passed into the PRINTF_ECHO function and the excFormatCmd function, resulting in a stack overflow and arbitrary command execution.
 ![](Clipboard_2023-03-06-12-24-19.png)
 ![](Clipboard_2023-03-06-12-25-04.png)
-通过form=lang控制v7的值，v7从前端接收operation字段的值并赋给v8。v7不为空且不为read则将v8拼接到PEINTF_ECHO函数
+The value of v7 is controlled via form=lang. v7 receives the value of the operation field from the front end and assigns it to v8. v7 is not empty and is not read then v8 is spliced into the PEINTF_ECHO function
 ![](Clipboard_2023-03-06-12-30-04.png)
-该函数直接将a1通过vsprintf函数拼接给v7，并将v7传递给excFormatCmd
+This function stitches a1 directly to v7 via the vsprintf function and passes v7 to excFormatCmd
 ![](Clipboard_2023-03-06-12-30-56.png)
-栈长度为0x800,则opeartion字段长度大于2052即可造成栈溢出
+If the stack length is 0x800, a stack overflow can be caused by the length of the option field being greater than 2052.
 ![](Clipboard_2023-03-06-12-32-23.png)
-excFormatCmd处也会造成栈溢出
+The stack overflow is also caused at excFormatCmd
 ![](Clipboard_2023-03-06-12-33-05.png)
-utils_exec_cmd则会任意命令执行
+utils_exec_cmd will execute any command
 
 poc:
 ![](@Clipboard_2023-03-06-12-34-08.png)
