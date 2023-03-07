@@ -1,5 +1,5 @@
 # Vul3 TP-Link WPA7510
-Vulnerability description: httpd handles the sub_41E970 function from /admin/locale without checking the operation field passed into the PRINTF_ECHO function and the excFormatCmd function, resulting in a stack overflow and arbitrary command execution.**Note that this is an unauthorized exploit, i.e. it can still be used if you are not authorized to log in**
+Vulnerability description: httpd handles the sub_41E970 function from /admin/locale without checking the operation field passed into the PRINTF_ECHO function and the excFormatCmd function, resulting in a stack overflow and arbitrary command execution.**Note that this is an unauthorized exploit**
 ![](Clipboard_2023-03-06-12-24-19.png)
 ![](Clipboard_2023-03-06-12-25-04.png)
 The value of v7 is controlled via form=lang. v7 receives the value of the operation field from the front end and assigns it to v8. v7 is not empty and is not read then v8 is spliced into the PEINTF_ECHO function
